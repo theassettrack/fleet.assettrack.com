@@ -1,12 +1,9 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GCFEH135QK"></script>
-<script>
+// Google G4A
+async src="https://www.googletagmanager.com/gtag/js?id=G-GCFEH135QK"
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-GCFEH135QK');
-</script>
 
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -20,8 +17,6 @@ s0.parentNode.insertBefore(s1,s0);
 
 // Ensure the Tawk_API is ready
 Tawk_API.onLoad = function() {
-    // Get the Tawk.to widget iframe
-    // Note: The selector might change; you may need to inspect the element to find the correct ID or class.
     const tawkWidget = document.querySelector('iframe[title="tawk.to-widget"]');
 
     if (!tawkWidget) {
