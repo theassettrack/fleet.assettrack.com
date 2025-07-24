@@ -1,10 +1,35 @@
-// Google G4A
-async src="https://www.googletagmanager.com/gtag/js?id=G-GCFEH135QK"
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-GCFEH135QK');
+// Google Analytics 2025-07-25
+(function() {
 
+const GA_ID = 'G-GCFEH135QK';
+const URL = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+
+let head = document.head || document.getElementsByTagName('head')[0];
+
+let script = document.createElement('script');
+
+script.addEventListener('load', function() {
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        window.dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', GA_ID);
+});
+
+script.setAttribute('type', 'text/javascript');
+script.setAttribute('charset', 'UTF-8');
+script.setAttribute('async', '');
+// script.setAttribute('defer', '');
+script.setAttribute('src', URL);
+
+head.appendChild(script);
+})();
+
+// Tawk.to Plugin 
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
