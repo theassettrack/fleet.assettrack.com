@@ -1,109 +1,120 @@
-// Google Analytics 2025-07-25
+/**
+ * Third-Party Analytics and Support Plugins
+ * Last Updated: 2025-07-25
+ */
+
+/* ========================================
+   GOOGLE ANALYTICS
+   ======================================== */
 (function() {
-
-const GA_ID = 'G-GCFEH135QK';
-const URL = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-
-let head = document.head || document.getElementsByTagName('head')[0];
-
-let script = document.createElement('script');
-
-script.addEventListener('load', function() {
+    const GA_ID = 'G-GCFEH135QK';
+    
+    // Initialize dataLayer and gtag function before script loads
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
+    window.gtag = function() {
         window.dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', GA_ID);
-});
-
-script.setAttribute('type', 'text/javascript');
-script.setAttribute('charset', 'UTF-8');
-script.setAttribute('async', '');
-// script.setAttribute('defer', '');
-script.setAttribute('src', URL);
-
-head.appendChild(script);
+    };
+    
+    // Configure Google Analytics
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+    
+    // Create and append the script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    
+    // Error handling
+    script.onerror = function() {
+        console.error('Failed to load Google Analytics script');
+    };
+    
+    const head = document.head || document.getElementsByTagName('head')[0];
+    head.appendChild(script);
 })();
 
-// Tawk.to Plugin 
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/685fddb6b431d41910941002/1iur7k50t';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
+
+/* ========================================
+   TAWK.TO LIVE CHAT
+   ======================================== */
+
+// Initialize Tawk.to API
+var Tawk_API = Tawk_API || {};
+var Tawk_LoadStart = new Date();
+
+// Load Tawk.to script
+(function() {
+    const script = document.createElement('script');
+    const firstScript = document.getElementsByTagName('script')[0];
+    
+    script.async = true;
+    script.src = 'https://embed.tawk.to/685fddb6b431d41910941002/1iur7k50t';
+    script.charset = 'UTF-8';
+    script.setAttribute('crossorigin', '*');
+    
+    firstScript.parentNode.insertBefore(script, firstScript);
 })();
 
-// Ensure the Tawk_API is ready
+// Tawk.to Widget Customization - Draggable functionality
 Tawk_API.onLoad = function() {
     const tawkWidget = document.querySelector('iframe[title="tawk.to-widget"]');
-
+    
     if (!tawkWidget) {
         console.error('Tawk.to widget not found.');
         return;
     }
-
+    
+    // Dragging state variables
     let isDragging = false;
     let initialX;
     let initialY;
-    let currentXOffset = 20; // Your initial X offset
-    let currentYOffset = 20; // Your initial Y offset
-
+    let currentXOffset = 20;
+    let currentYOffset = 20;
+    
+    // Handle mousedown event - start dragging
     tawkWidget.addEventListener('mousedown', (e) => {
         isDragging = true;
         initialX = e.clientX;
         initialY = e.clientY;
-        // Make the iframe ignore pointer events while dragging to prevent it from capturing the mouse
         tawkWidget.style.pointerEvents = 'none';
     });
-
+    
+    // Handle mousemove event - drag the widget
     document.addEventListener('mousemove', (e) => {
-        if (!isDragging) {
-            return;
-        }
-
+        if (!isDragging) return;
+        
         e.preventDefault();
-
+        
         const deltaX = e.clientX - initialX;
         const deltaY = e.clientY - initialY;
-
-        // Update the offsets based on how far the mouse has moved
         const newXOffset = currentXOffset + deltaX;
         const newYOffset = currentYOffset + deltaY;
-
-        // Use the Tawk_API to move the widget
+        
+        // Update widget position using Tawk API
         Tawk_API.customStyle = {
             visibility: {
                 desktop: {
                     xOffset: newXOffset,
                     yOffset: newYOffset,
-                    position: 'bl' // Ensure position is set
+                    position: 'bl'
                 },
                 mobile: {
                     xOffset: newXOffset,
                     yOffset: newYOffset,
-                    position: 'bl' // Ensure position is set
+                    position: 'bl'
                 }
             }
         };
     });
-
+    
+    // Handle mouseup event - stop dragging
     document.addEventListener('mouseup', (e) => {
-        if (!isDragging) {
-            return;
-        }
-
+        if (!isDragging) return;
+        
         isDragging = false;
-        // Re-enable pointer events on the iframe
         tawkWidget.style.pointerEvents = 'auto';
-
-        // Update the current offsets to the final dragged position
+        
+        // Update current position
         currentXOffset += (e.clientX - initialX);
         currentYOffset += (e.clientY - initialY);
     });
