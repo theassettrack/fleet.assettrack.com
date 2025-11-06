@@ -35,6 +35,25 @@
 
 
 /* ========================================
+   UMAMI ANALYTICS
+   ======================================== */
+(function() {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://cloud.umami.is/script.js';
+    script.setAttribute('data-website-id', '3e200ede-61ef-4066-8c59-492be143c85e');
+
+    // Error handling
+    script.onerror = function() {
+        console.error('Failed to load Umami Analytics script');
+    };
+
+    const head = document.head || document.getElementsByTagName('head')[0];
+    head.appendChild(script);
+})();
+
+
+/* ========================================
    TAWK.TO LIVE CHAT
    ======================================== */
 
