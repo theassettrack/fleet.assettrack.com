@@ -1,57 +1,7 @@
 /**
  * Third-Party Analytics and Support Plugins
- * Last Updated: 2025-07-25
+ * Last Updated: 2026-03-27
  */
-
-/* ========================================
-   GOOGLE ANALYTICS
-   ======================================== */
-(function() {
-    const GA_ID = 'G-GCFEH135QK';
-    
-    // Initialize dataLayer and gtag function before script loads
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function() {
-        window.dataLayer.push(arguments);
-    };
-    
-    // Configure Google Analytics
-    window.gtag('js', new Date());
-    window.gtag('config', GA_ID);
-    
-    // Create and append the script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-    
-    // Error handling
-    script.onerror = function() {
-        console.error('Failed to load Google Analytics script');
-    };
-    
-    const head = document.head || document.getElementsByTagName('head')[0];
-    head.appendChild(script);
-})();
-
-
-/* ========================================
-   UMAMI ANALYTICS
-   ======================================== */
-(function() {
-    const script = document.createElement('script');
-    script.defer = true;
-    script.src = 'https://cloud.umami.is/script.js';
-    script.setAttribute('data-website-id', '3e200ede-61ef-4066-8c59-492be143c85e');
-
-    // Error handling
-    script.onerror = function() {
-        console.error('Failed to load Umami Analytics script');
-    };
-
-    const head = document.head || document.getElementsByTagName('head')[0];
-    head.appendChild(script);
-})();
-
 
 /* ========================================
    TAWK.TO LIVE CHAT
